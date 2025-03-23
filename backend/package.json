@@ -1,0 +1,12 @@
+{
+  "name": "backend",
+  "module": "index.ts",
+  "type": "module",
+  "packageManager": "bun@1.2.5",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
