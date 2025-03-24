@@ -8,16 +8,16 @@
 }
 
 a,
-.green {
+.purple {
   text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
+  color: rgb(120, 0, 189);
   transition: 0.4s;
   padding: 3px;
 }
 
 @media (hover: hover) {
   a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
+    background-color: hsla(251, 72%, 36%, 0.2);
   }
 }
 
