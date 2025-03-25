@@ -3,10 +3,8 @@
         <h1>Home</h1>
         <!-- component magically becomes a custom tag! -->
         <PostListElement
-            v-for="(post, index) in mockPosts" 
-            :key="index" 
-            :title="post.title"
-            :content="post.content"
+            :title="mockPosts[0].title"
+            :content="mockPosts[0].content"
             style="margin: 10px;"
         />
         <!-- 
