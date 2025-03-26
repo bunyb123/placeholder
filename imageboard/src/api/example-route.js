@@ -5,7 +5,7 @@ import api from "./index";
 // import getExample from "./example-route";
 // getExample();
 export default {
-    async getExample() {
+    async getTitle() {
         const response = await api.get("/"); // corresponds to our thingy in backend index.js !!
         console.log('request response: ', response); // so in f12 u can check out what else is in our response
         return response.data;

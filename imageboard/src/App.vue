@@ -1,13 +1,7 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import { onMounted } from 'vue'
-import example from '@/api/example-route';
 import Header from './components/Header.vue';
 
-// onMounted runs on first load
-onMounted(() => {
-  example.getExample();
-})
 </script>
 
 <template>

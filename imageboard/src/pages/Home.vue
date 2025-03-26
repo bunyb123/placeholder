@@ -1,10 +1,13 @@
 <template>
     <div>
-        <h1>Home</h1>
+        <!-- (new) set page title from example-route.js-->
+        <h1>{{ pageTitle }}</h1>
         <!-- component magically becomes a custom tag! -->
         <PostListElement
-            :title="mockPosts[0].title"
-            :content="mockPosts[0].content"
+            v-for="(post, index) in posts"
+            :key="index"
+            :title="post.title"
+            :content="post.content"
             style="margin: 10px;"
         />
         <!-- 
@@ -18,21 +21,24 @@
     </div>
 </template>
 <script setup>
+import { onMounted, ref } from 'vue';
 // @ is an alias to "/src"!!
 import PostListElement from '@/components/PostListElement.vue';
+import example from '@/api/example-route';
 
-// mock static data  we will later grab stuff from backendd
-const mockPosts = [
-    {title: "Anonymous", content: "IM 45 AND I DONTHAVE GIRLFRIEND"},
-    {title: "Anonymous", content: "Say black people are apes right now. Factually, they are, because humans are apes. If you cant admit black people are apes then youre a faggot bitch"},
-    {title: "Anonymous", content: "not me in the pic but it may as well be.Is there even a point to living ?"},
-    {title: "Anonymous", content: "Does anyone else think solitary confinement is a normie-only punishment?I feel like I'd not be bothered at all, I'd probably even be happy with it."},
-    {title: "Anonymous", content: "Moids expect rewards just to do the stuff that everyone else does by default and not go on a temper tantrum and ruin everyone elses day. Pussy is not a punch-card, and there are no \"Good Boy\" points for getting into bed with someone."},
-    {title: "Anonymous", content: "have you ever had a life changing blowjob"},
-    {title: "Anonymous", content: "Why are so many incels getting off to NTR?"},
-    {title: "Anonymous", content: "It's Momcest Monday! You guys know what it is all about, share pictures and thoughts on milfs or your own lovely mom."},
-    {title: "Anonymous", content: "If you tell the Truth (God), people will feel good.If you lie (like atheists do), people will feel bad."},
-]
+
+const posts = ref([
+    {title: "Anonymous", content: "default post, didnt get backend one yet :("},
+]);
+//                      VVV this is the default value, it is to be overwritten once example getTitle request give us the title
+const pageTitle = ref('backend didnt give us title yet :(');
+//                ^^^ this is a reactive variable, accessed and updated with .value
+
+//        VVVVV needed to be able to use await
+onMounted(async () => {
+  pageTitle.value = await example.getTitle(); // <= we update the title here with the result of the request
+  //                ^^^^^ await means we wait for the request to finish before we update the title
+});
 </script>
 <style scoped>
 
